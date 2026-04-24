@@ -1,0 +1,67 @@
+<div class="container">
+  <header>
+    <img 
+    [src]="isDarkMode ? 'assets/images/logo-dark-theme.svg' : 'assets/images/logo-light-theme.svg'" 
+    alt="Logo" 
+    class="logo"
+  >
+    <button class="theme-toggle" (click)="toggleTheme()">
+    <img 
+      [src]="isDarkMode ? 'assets/images/icon-sun.svg' : 'assets/images/icon-moon.svg'" 
+      alt="Toggle Theme"
+    >
+  </button>
+  </header>
+
+  <h1>Analyze your text in real-time.</h1>
+
+  <!-- TEXT INPUT CHILDS CHILD -->
+  <app-text-input 
+    (textChanged)="handleTextChange($event)" [hasError]="limitExceeded" [maxLimit]="limitActive ? characterLimit : null">
+  </app-text-input>
+
+  <!-- OPTIONS ROW -->
+  <div class="options-row">
+    <div class="option-group">
+      <input type="checkbox" id="exclude-spaces" (change)="toggleExcludeSpaces($event)">
+      <label for="exclude-spaces">Exclude Spaces</label>
+    </div>
+    <div class="option-group">
+      <input type="checkbox" id="set-limit" (change)="toggleLimit($event)">
+      <label for="set-limit">Set Character Limit</label>
+    </div>
+    <div class="limit-input-wrapper">
+      <input type="number" class="limit-input" value="250" id="limit-value" (input)="updateLimit($event)">
+    </div>
+    <div style="margin-left: auto;">
+      <ng-container *ngIf="wordCount === 0">Approx. reading time: &lt; 1 minute</ng-container>
+      <ng-container *ngIf="wordCount > 0">Approx. reading time: {{readingTimeMinutes}} minute{{readingTimeMinutes > 1 ? 's' : ''}}</ng-container>
+    </div>
+  </div>
+
+  <!-- STATS GRID -->
+  <div class="stats-grid">
+    <app-stat-card 
+      label="Total Characters" 
+      [value]="totalCharacters" 
+      bgClass="total-chars">
+    </app-stat-card>
+    
+    <app-stat-card 
+      label="Word Count" 
+      [value]="wordCount" 
+      bgClass="word-count">
+    </app-stat-card>
+    
+    <app-stat-card 
+      label="Sentence Count" 
+      [value]="sentenceCount" 
+      bgClass="sentence-count">
+    </app-stat-card>
+  </div>
+
+  <!-- LETTER DENSITY COMPONENT 
+       Watch it receive the raw text via @Input and react with ngOnChanges! -->
+  <app-letter-density [text]="currentText"></app-letter-density>
+
+</div>

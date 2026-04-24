@@ -1,0 +1,22 @@
+<div class="letter-density">
+  <h2>Letter Density</h2>
+  
+  <!-- If we have no letters yet, show the static message -->
+  <div *ngIf="letterStats.length === 0" class="density-row" style="color: var(--text-secondary)">
+    No characters found. Start typing to see letter density.
+  </div>
+
+  <!-- If we do have letters, loop through our calculated array -->
+  <ng-container *ngIf="letterStats.length > 0">
+    <div class="density-row" *ngFor="let stat of letterStats">
+      <span class="density-letter">{{ stat.letter }}</span>
+      
+      <!-- The inner bar dynamically changes width based on the percentage -->
+      <div class="density-bar-container">
+        <div class="density-bar" [style.width.%]="stat.percentage"></div>
+      </div>
+      
+      <span class="density-count">{{ stat.count }} ({{ stat.percentage }}%)</span>
+    </div>
+  </ng-container>
+</div>

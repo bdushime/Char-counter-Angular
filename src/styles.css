@@ -1,0 +1,225 @@
+/* Setup variables for themes */
+:root {
+  --primary-color: #8c2ee8;
+  --secondary-color: #ff9900;
+  
+  /* Light Theme Colors */
+  --bg-color: #f3fbfe;
+  --card-bg: #ffffff;
+  --text-main: #12131a;
+  --text-secondary: #5e647c;
+  --border-color: #e4e7f3;
+  --focus-ring: rgba(140, 46, 232, 0.5);
+
+  --font-family: 'DM Sans', sans-serif;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme Colors */
+  --bg-color: #12131a;
+  --card-bg: #21222c;
+  --text-main: #f3fbfe;
+  --text-secondary: #8a94b4;
+  --border-color: #3b3f54;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  background-image: url('/assets/images/bg-light-theme.png');
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] body {
+  background-image: url('/assets/images/bg-dark-theme.png');
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Base App Structural Styles */
+.textarea-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  font-size: 1.1rem;
+  resize: none;
+  min-height: 200px;
+  transition: all 0.2s ease;
+  }
+
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.options-row {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.option-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.limit-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.limit-input {
+  width: 80px;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-main);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.stat-value {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Background patterns for stat cards */
+.stat-card.total-chars {background-color: #d3a0fa; background-image: url('/assets/images/pattern-character-count.svg'); background-repeat: no-repeat; background-position: right top; }
+.stat-card.word-count {background-color: #ff9a00; background-image: url('/assets/images/pattern-word-count.svg'); background-repeat: no-repeat; background-position: right top; }
+.stat-card.sentence-count {background-color: #fe8159;  background-image: url('/assets/images/pattern-sentence-count.svg'); background-repeat: no-repeat; background-position: right top; }
+
+.letter-density {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.letter-density h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.density-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  gap: 1rem;
+}
+
+.density-letter {
+  width: 20px;
+  font-weight: bold;
+}
+
+.density-bar-container {
+  flex-grow: 1;
+  background-color: var(--border-color);
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.density-bar {
+  background-color: var(--primary-color);
+  height: 100%;
+}
+
+.density-count {
+  width: 40px;
+  text-align: right;
+  color: var(--text-secondary);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.theme-toggle {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--border-color);
+}
+
+textarea.error {
+  border-color: #fe5f55;
+  box-shadow: 0 0 0 3px rgba(254, 95, 85, 0.2);
+}
+
+.stat-card .stat-value, 
+.stat-card .stat-label {
+  color: #12131a !important; 
+}
+
