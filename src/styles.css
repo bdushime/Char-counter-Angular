@@ -1,9 +1,9 @@
-/* Setup variables for themes */
+
 :root {
   --primary-color: #8c2ee8;
   --secondary-color: #ff9900;
   
-  /* Light Theme Colors */
+  
   --bg-color: #f3fbfe;
   --card-bg: #ffffff;
   --text-main: #12131a;
@@ -15,7 +15,7 @@
 }
 
 [data-theme="dark"] {
-  /* Dark Theme Colors */
+
   --bg-color: #12131a;
   --card-bg: #21222c;
   --text-main: #f3fbfe;
@@ -59,7 +59,6 @@ h1 {
   margin-top: 1rem;
 }
 
-/* Base App Structural Styles */
 .textarea-container {
   position: relative;
   margin-bottom: 1rem;
@@ -182,11 +181,13 @@ textarea:focus {
 .density-bar {
   background-color: var(--primary-color);
   height: 100%;
+  border-radius: 6px;
 }
 
 .density-count {
-  width: 40px;
+  /* width: 40px; */
   text-align: right;
+  white-space: nowrap;
   color: var(--text-secondary);
 }
 

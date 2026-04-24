@@ -7,6 +7,7 @@ interface LetterStat {
   percentage: number;
 }
 
+
 @Component({
   selector: 'app-letter-density',
   standalone: true,
@@ -14,29 +15,29 @@ interface LetterStat {
   templateUrl: './letter-density.component.html'
 })
 export class LetterDensityComponent implements OnChanges {
-  // We receive the raw text from the parent Manager
+
+ 
+  allLetterStats: LetterStat[] = [];
+  showAll: boolean = false;
+
+
   @Input() text: string = '';
   
-  // This array will hold our calculated statistics
   letterStats: LetterStat[] = [];
 
-  // LIFECYCLE HOOK: ngOnChanges
-  // This automatically runs EVERY TIME any @Input() value changes from the parent!
+
   ngOnChanges(changes: SimpleChanges) {
-    // If the 'text' input specifically changed, recalculate the density
     if (changes['text']) {
       this.calculateDensity(this.text);
     }
   }
 
-  // Our custom calculation logic
   private calculateDensity(rawText: string) {
     if (!rawText || rawText.trim() === '') {
       this.letterStats = [];
       return;
     }
 
-    // Only look at alphabetic characters, uppercase them
     const cleanText = rawText.replace(/[^a-zA-Z]/g, '').toUpperCase();
     const totalLetters = cleanText.length;
 
@@ -45,20 +46,37 @@ export class LetterDensityComponent implements OnChanges {
       return;
     }
 
-    // Count frequencies
+  
     const counts: Record<string, number> = {};
     for (const char of cleanText) {
       counts[char] = (counts[char] || 0) + 1;
     }
 
-    // Convert into our array format, sort by highest count, and just grab the top 5
-    this.letterStats = Object.keys(counts).map(letter => {
+
+        this.allLetterStats = Object.keys(counts).map(letter => {
       const count = counts[letter];
       return {
         letter: letter,
         count: count,
         percentage: Number(((count / totalLetters) * 100).toFixed(2))
       };
-    }).sort((a, b) => b.count - a.count).slice(0, 5);
+    }).sort((a, b) => b.count - a.count);
+    
+    this.updateDisplayedStats();
   }
+
+    toggleShowAll() {
+    this.showAll = !this.showAll;
+    this.updateDisplayedStats();
+  }
+
+  updateDisplayedStats() {
+    if (this.showAll) {
+      this.letterStats = this.allLetterStats;
+    } else {
+      this.letterStats = this.allLetterStats.slice(0, 5);
+    }
+  }
+
+
 }

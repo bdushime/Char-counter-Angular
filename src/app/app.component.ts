@@ -14,6 +14,7 @@ import { LetterDensityComponent } from './components/letter-density/letter-densi
     StatCardComponent,
     HeaderComponent,
     LetterDensityComponent
+    
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
