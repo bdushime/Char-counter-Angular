@@ -1,6 +1,6 @@
 # Real-Time Character Counter App
 
- # Deployed Link:
+ # Deployed Link: https://incredible-eclair-9ff60d.netlify.app/
 
 A full-featured, responsive text analysis tool built with modern Angular. This application provides real-time statistics including character limits, precise letter density mapping, word tracking, and dynamic Light/Dark mode styling.
 
