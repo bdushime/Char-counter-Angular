@@ -1,27 +1,50 @@
-# CharacterCounter
+# Real-Time Character Counter App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+ # Deployed Link:
 
-## Development server
+A full-featured, responsive text analysis tool built with modern Angular. This application provides real-time statistics including character limits, precise letter density mapping, word tracking, and dynamic Light/Dark mode styling.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+##  Features
 
-## Code scaffolding
+- **Real-Time Statistical Tracking**: Instantly calculates total characters, word count, sentence count, and estimated reading time.
+- **Letter Density Analysis**: Maps out the exact percentage and frequency of the top used alphabetical characters dynamically.
+- **"Exclude Spaces" Toggle**: Offers flexible counting metrics for strict character limits.
+- **Predictive Limits**: Users can set custom character limits with seamless UI validation and physical `maxlength` prevention.
+- **Global Theme Toggling**: Instant Light/Dark mode switching managed natively via CSS variables and Angular component bindings.
+- **Responsive Layout**: Adapts flawlessly to mobile, tablet, and desktop viewports using CSS Grid/Flexbox.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+##  Built With
 
-## Build
+* **Angular (v17+)** - Modern Standalone Components architecture.
+* **TypeScript** - Strongly typed Javascript for reliable data flow.
+* **Vanilla CSS3** - Custom styling featuring DOM-level Light/Dark dynamic styling.
+* **Semantic HTML5** - Accessible, structured markup.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+##  Technical Architecture & Learning Focus
 
-## Running unit tests
+This project was built focusing deeply on the core pillars of Angular's component architecture:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* **Parent-to-Child Communication (`@Input`)**: Utilizing a "Manager/Chef" architecture, the `AppComponent` manages state while seamlessly pushing configuration (like limit errors) to dumb UI elements like the `StatCardComponent`.
+* **Child-to-Parent Event Flow (`@Output` & `EventEmitter`)**: Implementing custom events in the `TextInputComponent` to broadcast raw string data upwards upon user keystrokes without complex bi-directional data binding.
+* **Lifecycle Hook Optimization (`ngOnChanges`)**: Leveraging `ngOnChanges` inside the `LetterDensityComponent` to intercept state changes and run calculation-heavy parsing *only* when the parent explicitly updates the text binding.
+* **Structural Directives (`*ngIf` & `*ngFor`)**: Conditionally rendering UI elements, managing state transitions (like expanding lists with a "See More" toggle), and looping through computed arrays dynamically.
 
-## Running end-to-end tests
+##  Running the Project Locally
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+To get a local copy up and running, follow these simple steps:
 
-## Further help
+1. **Clone the repository**
+   ```sh
+   git clone [your-repository-url]
+   ```
+2. **Install NPM packages**
+   ```sh
+   npm install
+   ```
+3. **Run the Development Server**
+   ```sh
+   ng serve --open
+   ```
+   *The application will automatically launch and reload at `http://localhost:4200/`.*
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
