@@ -35,7 +35,6 @@ export class AppComponent {
   handleTextChange(newText: string) {
     this.currentText = newText;
     
-    // We update all stats dynamically
     this.updateCharacterCount();
     this.wordCount = this.calculateWords(this.currentText);
     this.sentenceCount = this.calculateSentences(this.currentText);
@@ -44,19 +43,16 @@ export class AppComponent {
 
   private calculateWords(text: string): number {
     if (!text.trim()) return 0;
-    // Split by spaces, newlines, etc and filter out empty strings
     return text.trim().split(/\s+/).filter(word => word.length > 0).length;
   }
 
   private calculateSentences(text: string): number {
     if (!text.trim()) return 0;
-    // Split by punctuation marks that end a sentence (. ! ?)
     const sentences = text.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0);
     return sentences.length;
   }
 
   private calculateReadingTime(words: number): number {
-    // Average reading speed is ~200 words per minute
     return Math.max(1, Math.ceil(words / 200));
   }
 
