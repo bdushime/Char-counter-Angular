@@ -1,8 +1,10 @@
 # Real-Time Character Counter App
 
+ # Deployed Link: https://incredible-eclair-9ff60d.netlify.app/
+
 A full-featured, responsive text analysis tool built with modern Angular. This application provides real-time statistics including character limits, precise letter density mapping, word tracking, and dynamic Light/Dark mode styling.
 
-## 🚀 Features
+##  Features
 
 - **Real-Time Statistical Tracking**: Instantly calculates total characters, word count, sentence count, and estimated reading time.
 - **Letter Density Analysis**: Maps out the exact percentage and frequency of the top used alphabetical characters dynamically.
@@ -11,14 +13,14 @@ A full-featured, responsive text analysis tool built with modern Angular. This a
 - **Global Theme Toggling**: Instant Light/Dark mode switching managed natively via CSS variables and Angular component bindings.
 - **Responsive Layout**: Adapts flawlessly to mobile, tablet, and desktop viewports using CSS Grid/Flexbox.
 
-## 🛠️ Built With
+##  Built With
 
 * **Angular (v17+)** - Modern Standalone Components architecture.
 * **TypeScript** - Strongly typed Javascript for reliable data flow.
 * **Vanilla CSS3** - Custom styling featuring DOM-level Light/Dark dynamic styling.
 * **Semantic HTML5** - Accessible, structured markup.
 
-## 🧠 Technical Architecture & Learning Focus
+##  Technical Architecture & Learning Focus
 
 This project was built focusing deeply on the core pillars of Angular's component architecture:
 
@@ -27,7 +29,7 @@ This project was built focusing deeply on the core pillars of Angular's componen
 * **Lifecycle Hook Optimization (`ngOnChanges`)**: Leveraging `ngOnChanges` inside the `LetterDensityComponent` to intercept state changes and run calculation-heavy parsing *only* when the parent explicitly updates the text binding.
 * **Structural Directives (`*ngIf` & `*ngFor`)**: Conditionally rendering UI elements, managing state transitions (like expanding lists with a "See More" toggle), and looping through computed arrays dynamically.
 
-## 💻 Running the Project Locally
+##  Running the Project Locally
 
 To get a local copy up and running, follow these simple steps:
 
@@ -45,5 +47,4 @@ To get a local copy up and running, follow these simple steps:
    ```
    *The application will automatically launch and reload at `http://localhost:4200/`.*
 
-## 🎨 Design Reference
-This project was based on a challenge from [Frontend Mentor](https://www.frontendmentor.io). The strict objective was to perfectly replicate pixel-perfect Figma prototypes into functional, componentized frontend architecture.
+
