@@ -16,8 +16,9 @@ export class TextInputComponent {
   @Output() textChanged = new EventEmitter<string>();
 
 
-  onInput(event: any) {
-    const value = event.target.value;
+  onInput(event: Event) {
+    const target = event.target as HTMLTextAreaElement;
+    const value = target.value;
     this.textChanged.emit(value);
   }
 }

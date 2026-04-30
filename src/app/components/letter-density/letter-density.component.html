@@ -1,11 +1,11 @@
 <div class="letter-density">
   <h2>Letter Density</h2>
   
-  <div *ngIf="letterStats.length === 0" class="density-row" style="color: var(--text-secondary)">
+  <div *ngIf="allLetterStats.length === 0" class="density-row" style="color: var(--text-secondary)">
     No characters found. Start typing to see letter density.
   </div>
 
-  <ng-container *ngIf="letterStats.length > 0">
+  <ng-container *ngIf="allLetterStats.length > 0">
     <div class="density-row" *ngFor="let stat of letterStats">
       <span class="density-letter">{{ stat.letter }}</span>
 
@@ -18,10 +18,9 @@
   </ng-container>
 </div>
 
-  <div class="see-more-container" *ngIf="allLetterStats.length > 5" style="margin-top: 1rem;">
-    <button (click)="toggleShowAll()" style="background: none; border: none; cursor: pointer; color: var(--text-main); display: flex; align-items: center; gap: 8px; font-size: 1rem; font-family: inherit;">
-      {{ showAll ? 'See less' : 'See more' }}
-      <span style="font-size: 0.8rem;">{{ showAll ? '▲' : '▼' }}</span>
-    </button>
-  </div>
-
+<div class="see-more-container" *ngIf="allLetterStats.length > 5" style="margin-top: 1rem;">
+  <button (click)="toggleShowAll()" style="background: none; border: none; cursor: pointer; color: var(--text-main); display: flex; align-items: center; gap: 8px; font-size: 1rem; font-family: inherit;">
+    {{ showAll ? 'See less' : 'See more' }}
+    <span style="font-size: 0.8rem;">{{ showAll ? '▲' : '▼' }}</span>
+  </button>
+</div>

@@ -1,41 +1,51 @@
 <div class="container">
   <header>
     <img 
-    [src]="isDarkMode ? 'assets/images/logo-dark-theme.svg' : 'assets/images/logo-light-theme.svg'" 
-    alt="Logo" 
-    class="logo"
-  >
-    <button class="theme-toggle" (click)="toggleTheme()">
-    <img 
-      [src]="isDarkMode ? 'assets/images/icon-sun.svg' : 'assets/images/icon-moon.svg'" 
-      alt="Toggle Theme"
+      [src]="analyzer.isDarkMode ? 'assets/images/logo-dark-theme.svg' : 'assets/images/logo-light-theme.svg'" 
+      alt="Logo" 
+      class="logo"
     >
-  </button>
+    <button class="theme-toggle" (click)="analyzer.toggleTheme()">
+      <img 
+        [src]="analyzer.isDarkMode ? 'assets/images/icon-sun.svg' : 'assets/images/icon-moon.svg'" 
+        alt="Toggle Theme"
+      >
+    </button>
   </header>
 
   <h1>Analyze your text in real-time.</h1>
 
-  <!-- TEXT INPUT CHILDS CHILD -->
+  <!-- TEXT INPUT -->
   <app-text-input 
-    (textChanged)="handleTextChange($event)" [hasError]="limitExceeded" [maxLimit]="limitActive ? characterLimit : null">
+    (textChanged)="analyzer.handleTextChange($event)" 
+    [hasError]="analyzer.limitExceeded" 
+    [maxLimit]="analyzer.limitActive ? analyzer.characterLimit : null">
   </app-text-input>
 
   <!-- OPTIONS ROW -->
   <div class="options-row">
     <div class="option-group">
-      <input type="checkbox" id="exclude-spaces" (change)="toggleExcludeSpaces($event)">
+      <input type="checkbox" id="exclude-spaces" (change)="analyzer.toggleExcludeSpaces($any($event.target).checked)">
       <label for="exclude-spaces">Exclude Spaces</label>
     </div>
     <div class="option-group">
-      <input type="checkbox" id="set-limit" (change)="toggleLimit($event)">
+      <input type="checkbox" id="set-limit" (change)="analyzer.toggleLimit($any($event.target).checked)">
       <label for="set-limit">Set Character Limit</label>
     </div>
     <div class="limit-input-wrapper">
-      <input type="number" class="limit-input" value="250" id="limit-value" (input)="updateLimit($event)">
+      <input 
+        type="number" 
+        class="limit-input" 
+        [value]="analyzer.characterLimit" 
+        id="limit-value" 
+        (input)="analyzer.updateLimit($any($event.target).value)"
+      >
     </div>
     <div style="margin-left: auto;">
-      <ng-container *ngIf="wordCount === 0">Approx. reading time: &lt; 1 minute</ng-container>
-      <ng-container *ngIf="wordCount > 0">Approx. reading time: {{readingTimeMinutes}} minute{{readingTimeMinutes > 1 ? 's' : ''}}</ng-container>
+      <ng-container *ngIf="analyzer.wordCount === 0">Approx. reading time: &lt; 1 minute</ng-container>
+      <ng-container *ngIf="analyzer.wordCount > 0">
+        Approx. reading time: {{analyzer.readingTimeMinutes}} minute{{analyzer.readingTimeMinutes > 1 ? 's' : ''}}
+      </ng-container>
     </div>
   </div>
 
@@ -43,23 +53,24 @@
   <div class="stats-grid">
     <app-stat-card 
       label="Total Characters" 
-      [value]="totalCharacters" 
+      [value]="analyzer.totalCharacters" 
       bgClass="total-chars">
     </app-stat-card>
     
     <app-stat-card 
       label="Word Count" 
-      [value]="wordCount" 
+      [value]="analyzer.wordCount" 
       bgClass="word-count">
     </app-stat-card>
     
     <app-stat-card 
       label="Sentence Count" 
-      [value]="sentenceCount" 
+      [value]="analyzer.sentenceCount" 
       bgClass="sentence-count">
     </app-stat-card>
   </div>
 
-  <app-letter-density [text]="currentText"></app-letter-density>
+  <!-- LETTER DENSITY -->
+  <app-letter-density [text]="analyzer.currentText"></app-letter-density>
 
 </div>
