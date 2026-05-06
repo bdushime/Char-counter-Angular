@@ -13,7 +13,7 @@ export class TextAnalyzerService {
   totalCharacters = 0;
   wordCount = 0;
   sentenceCount = 0;
-  readingTimeMinutes = 0;
+  readingTime = "< 1 minute";
   limitExceeded = false;
   letterStats: LetterStat[] = [];
 
@@ -30,7 +30,13 @@ export class TextAnalyzerService {
     const trimmed = this.currentText.trim();
     this.wordCount = trimmed ? trimmed.split(/\s+/).filter(w => w.length > 0).length : 0;
     this.sentenceCount = trimmed ? this.currentText.split(/[.!?]+/).filter(s => s.trim().length > 0).length : 0;
-    this.readingTimeMinutes = Math.max(1, Math.ceil(this.wordCount / 200));
+    const minutes = this.wordCount / 200;
+    if (minutes < 1) {
+      this.readingTime = "< 1 minute";
+    } else {
+      const rounded = Math.ceil(minutes);
+      this.readingTime = `${rounded} minute${rounded > 1 ? 's' : ''}`;
+    }
     this.limitExceeded = this.limitActive && this.totalCharacters >= this.characterLimit;
     this.letterStats = this.calculateDensity(this.currentText);
   }

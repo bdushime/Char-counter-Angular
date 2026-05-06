@@ -24,28 +24,27 @@
 
   <!-- OPTIONS ROW -->
   <div class="options-row">
-    <div class="option-group">
-      <input type="checkbox" id="exclude-spaces" (change)="analyzer.toggleExcludeSpaces($any($event.target).checked)">
-      <label for="exclude-spaces">Exclude Spaces</label>
+    <div class="options-left">
+      <div class="option-group">
+        <input type="checkbox" id="exclude-spaces" (change)="analyzer.toggleExcludeSpaces($any($event.target).checked)">
+        <label for="exclude-spaces">Exclude Spaces</label>
+      </div>
+      <div class="option-group limit-group">
+        <input type="checkbox" id="set-limit" (change)="analyzer.toggleLimit($any($event.target).checked)">
+        <label for="set-limit">Set Character Limit</label>
+        <div class="limit-input-wrapper" *ngIf="analyzer.limitActive">
+          <input 
+            type="number" 
+            class="limit-input" 
+            [value]="analyzer.characterLimit" 
+            id="limit-value" 
+            (input)="analyzer.updateLimit($any($event.target).value)"
+          >
+        </div>
+      </div>
     </div>
-    <div class="option-group">
-      <input type="checkbox" id="set-limit" (change)="analyzer.toggleLimit($any($event.target).checked)">
-      <label for="set-limit">Set Character Limit</label>
-    </div>
-    <div class="limit-input-wrapper">
-      <input 
-        type="number" 
-        class="limit-input" 
-        [value]="analyzer.characterLimit" 
-        id="limit-value" 
-        (input)="analyzer.updateLimit($any($event.target).value)"
-      >
-    </div>
-    <div style="margin-left: auto;">
-      <ng-container *ngIf="analyzer.wordCount === 0">Approx. reading time: &lt; 1 minute</ng-container>
-      <ng-container *ngIf="analyzer.wordCount > 0">
-        Approx. reading time: {{analyzer.readingTimeMinutes}} minute{{analyzer.readingTimeMinutes > 1 ? 's' : ''}}
-      </ng-container>
+    <div class="reading-time">
+      Approx. reading time: {{analyzer.readingTime}}
     </div>
   </div>
 
