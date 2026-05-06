@@ -41,7 +41,7 @@ export class TextAnalyzerService {
     const totalLetters = cleanText.length;
     if (totalLetters === 0) return [];
 
-    const counts: Record<string, number> = {};
+    const counts: { [key: string]: number } = {};
     for (const char of cleanText) {
       counts[char] = (counts[char] || 0) + 1;
     }
