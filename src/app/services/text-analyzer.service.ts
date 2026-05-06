@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-
-export interface LetterStat {
-  letter: string;
-  count: number;
-  percentage: number;
-}
-
+import { LetterStat } from '../interfaces/letter-stat.model';
 @Injectable({
   providedIn: 'root'
 })

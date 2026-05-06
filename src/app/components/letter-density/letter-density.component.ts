@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TextAnalyzerService, LetterStat } from '../../services/text-analyzer.service';
+import { TextAnalyzerService} from '../../services/text-analyzer.service';
+import { LetterStat } from '../../interfaces/letter-stat.model';
 
 @Component({
   selector: 'app-letter-density',
